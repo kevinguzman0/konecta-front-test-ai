@@ -10,7 +10,7 @@ import Cards from "../components/CardsPokemon.vue"
 
 export default {
   components: {
-    Cards
+    Cards    
   }
 };
 </script>

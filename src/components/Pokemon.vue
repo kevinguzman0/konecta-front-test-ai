@@ -1,10 +1,5 @@
 <template>
   <div>
-    <!-- <loading
-      v-model="isLoading"
-      :can-cancel="false"
-      :is-full-page="true"
-    /> -->
     <img :src="imagen" class="card-body-img" />
     <h1 class="card-body-title" style="font-size: 2rem">Pokemon {{ id }}</h1>
     <hr />
@@ -38,26 +33,21 @@
 <script>
 import axios from "axios";
 
-import Loading from "vue-loading-overlay";
-import "vue-loading-overlay/dist/vue-loading.css";
+// import Loading from "vue-loading-overlay";
+// import "vue-loading-overlay/dist/vue-loading.css";
 
 export default {
   name: "Pokemon",
 
-  components: {
-    Loading,
-  },
 
   data() {
     return {
-      isLoading: true,
       todos: null, //Objeto
       imagen: null,
       id: this.$route.params.id,
     };
   },
   mounted() {
-    this.isLoading = false;
     this.getTodos();
   },
   methods: {
@@ -77,6 +67,3 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
