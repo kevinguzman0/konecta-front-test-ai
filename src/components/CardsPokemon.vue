@@ -2,7 +2,11 @@
   <div>
     <table>
       <tbody>
-        <img src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png" alt="" class="responsive">
+        <img
+          src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png"
+          alt=""
+          class="responsive"
+        />
         <tr v-for="todo in todos" :key="todo.id">
           <td>
             <router-link :to="{ name: 'Details', params: { id: todo.name } }">
@@ -17,7 +21,6 @@
       </tbody>
     </table>
   </div>
-
 </template>
 
 <script>
@@ -25,13 +28,16 @@ import axios from "axios";
 
 export default {
   name: "Cards",
+  
   data() {
-    return {
+    return {     
       todos: null, //Objeto
     };
   },
+  
   mounted() {
     this.getTodos();
+    
   },
   methods: {
     async getTodos() {
@@ -54,8 +60,8 @@ export default {
   height: auto;
 }
 a {
-    color: black;
-    text-transform: capitalize;
-    text-decoration: none;
+  color: black;
+  text-transform: capitalize;
+  text-decoration: none;
 }
 </style>

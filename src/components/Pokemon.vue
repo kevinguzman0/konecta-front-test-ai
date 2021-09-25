@@ -1,46 +1,63 @@
 <template>
   <div>
-    <h1>Pokemon {{ id }}</h1>
+    <!-- <loading
+      v-model="isLoading"
+      :can-cancel="false"
+      :is-full-page="true"
+    /> -->
+    <img :src="imagen" class="card-body-img" />
+    <h1 class="card-body-title" style="font-size: 2rem">Pokemon {{ id }}</h1>
     <hr />
-    <h1>Abilities</h1>
+    
+    <h1 class="card-body-title">Abilities</h1>
     <div v-for="todo in todos.abilities" :key="todo.id">
-      <h2 class="card-body-title">
+      <p class="card-body-text" >
         {{ todo.ability.name }}
-      </h2>
+      </p>
     </div>
 
     <hr />
-    <h1>Items</h1>
+    <h1 class="card-body-title">Items</h1>
     <div v-for="todo in todos.held_items" :key="todo.id">
-      <h2 class="card-body-title">
+      <p class="card-body-text" >
         {{ todo.item.name }}
-      </h2>
+      </p>
     </div>
     <hr />
 
-    <h1>Moves</h1>
+    <h1 class="card-body-title">Moves</h1>
     <div v-for="todo in todos.moves" :key="todo.id">
-      <h2 class="card-body-title">
+      <p class="card-body-text" >
         {{ todo.move.name }}
-      </h2>
+      </p>
     </div>
+    
   </div>
 </template>
 
 <script>
 import axios from "axios";
 
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
+
 export default {
   name: "Pokemon",
 
+  components: {
+    Loading,
+  },
+
   data() {
     return {
+      isLoading: true,
       todos: null, //Objeto
       imagen: null,
       id: this.$route.params.id,
     };
   },
   mounted() {
+    this.isLoading = false;
     this.getTodos();
   },
   methods: {
@@ -50,7 +67,7 @@ export default {
         .then((response) => {
           console.log(response.data);
 
-          //this.imagen = response.data.sprites.front_default;
+          this.imagen = response.data.sprites.front_default;
 
           this.todos = response.data;
         })
@@ -59,3 +76,7 @@ export default {
   },
 };
 </script>
+
+<style>
+
+</style>
